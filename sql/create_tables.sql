@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
   phone_number VARCHAR(20) NOT NULL,
   country VARCHAR(255) NOT NULL,
   external_id VARCHAR(255),
-  subscription_start_date DATE NOT NULL,
+  subscription_start_date TIMESTAMP NULL,
   created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   status ENUM('PENDING', 'ACTIVE', 'DELETED', 'SUSPENDED') NOT NULL DEFAULT 'PENDING',
   payout DECIMAL(10, 2) NOT NULL,

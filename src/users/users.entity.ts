@@ -11,7 +11,15 @@ export enum BusinessType {
 }
 
 export enum Status {
+  PENDING = 'PENDING',
+  ACTIVE = 'ACTIVE',
+  DELETED = 'DELETED',
+  SUSPENDED = 'SUSPENDED',
+}
 
+export enum PayoutMethod {
+  MANUAL = 'MANUAL',
+  AUTO = 'AUTO',
 }
 
 @Entity()
@@ -49,12 +57,19 @@ export class Users {
   @CreateDateColumn()
   created_on: Date;
 
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: Status,
+    default: Status.PENDING,
+  })
   status: string;
 
   @Column()
   payout: number;
 
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: PayoutMethod,
+  })
   payout_method: string;
 }
