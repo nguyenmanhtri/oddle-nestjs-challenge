@@ -1,6 +1,6 @@
 import {
   Controller,
-  Get, Post, Patch,
+  Get, Post, Patch, Delete,
   Param, Body, Response,
   HttpStatus,
 } from '@nestjs/common';
@@ -42,5 +42,10 @@ export class UsersController {
   ) {
     const updatedUser = await this.usersService.updateOne(id, updateUserDTO);
     return res.status(HttpStatus.OK).json(updatedUser);
+  }
+
+  @Delete('*')
+  delete(@Response() res) {
+    return res.status(HttpStatus.METHOD_NOT_ALLOWED).json({ message: 'DELETE NOT ALLOWED.' })
   }
 }
