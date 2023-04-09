@@ -1,13 +1,12 @@
 import {
   Controller,
-  Get,
-  Post,
-  Param,
-  Body,
+  Get, Post, Patch,
+  Param, Body, Response,
+  HttpStatus,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Users } from './users.entity';
-import { CreateUserDTO } from './create-user.dto';
+import { CreateUserDTO, UpdateUserDTO } from './users.dto';
 
 @Controller('users')
 export class UsersController {
@@ -24,7 +23,24 @@ export class UsersController {
   }
 
   @Post()
-  async create(@Body() createUserDTO: CreateUserDTO) {
-    return this.usersService.createOne(createUserDTO);
+  async create(
+    @Body() createUserDTO: CreateUserDTO,
+    @Response() res,
+  ) {
+    const newUser = await this.usersService.createOne({
+      ...createUserDTO,
+      external_id: res.locals.stripeAccount ? res.locals.stripeAccount.id : null,
+    });
+    return res.status(HttpStatus.CREATED).json(newUser);
+  }
+
+  @Patch(':id')
+  async update(
+    @Param('id') id: number,
+    @Body() updateUserDTO: UpdateUserDTO,
+    @Response() res,
+  ) {
+    const updatedUser = await this.usersService.updateOne(id, updateUserDTO);
+    return res.status(HttpStatus.OK).json(updatedUser);
   }
 }
