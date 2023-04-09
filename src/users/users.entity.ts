@@ -4,23 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
 } from 'typeorm';
-
-export enum BusinessType {
-  INDIVIDUAL = 'INDIVIDUAL',
-  COMPANY = 'COMPANY',
-}
-
-export enum Status {
-  PENDING = 'PENDING',
-  ACTIVE = 'ACTIVE',
-  DELETED = 'DELETED',
-  SUSPENDED = 'SUSPENDED',
-}
-
-export enum PayoutMethod {
-  MANUAL = 'MANUAL',
-  AUTO = 'AUTO',
-}
+import {
+  BusinessType,
+  Status,
+  PayoutMethod,
+} from './users.enum';
 
 @Entity()
 export class Users {
@@ -49,7 +37,7 @@ export class Users {
   country: string;
 
   @Column()
-  external_id: number;
+  external_id: string;
 
   @Column('timestamp')
   subscription_start_date: Date;

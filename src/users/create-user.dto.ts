@@ -5,6 +5,6 @@ export class CreateUserDTO {
   business_type: string;
   phone_number: string;
   country: string;
-  external_id: number;
+  external_id: string;
   payout: number;
 }
