@@ -44,7 +44,7 @@ export class UsersController {
     return res.status(HttpStatus.OK).json(updatedUser);
   }
 
-  @Delete('*')
+  @Delete(':id')
   delete(@Response() res) {
     return res.status(HttpStatus.METHOD_NOT_ALLOWED).json({ message: 'DELETE NOT ALLOWED.' })
   }
