@@ -1,14 +1,3 @@
-# Oddle NestJS Challenge
-- Name: NGUYEN MANH TRI
-- Email: manhtri97@gmail.com
-- Where did you apply from: Vietnam
-
-## Disclaimer
-Because of the limited time, I was not able to complete all the user stories. Missing features are:
-- Retrieve a list of accounts based on created time and/or country
-- Generate a login link
-- Update conditions for users in Hong Kong and Singapore.
-
 # Getting started
 To start this project, you need:
 - **Nest CLI**. You can follow [the official docs](https://docs.nestjs.com/cli/overview) to install Nest CLI
